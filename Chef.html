@@ -1,0 +1,44 @@
+<html>
+
+	<head>		
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+			<link rel="stylesheet" href="Chef.css"/>
+		<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+		<title></title>
+	</head>
+	
+	<body>
+		<!-- got template from http://bootsnipp.com/tags/login --> 
+		<div class="container">
+			<div class="row">
+				<div class="container" id="formContainer">
+				  <form class="form-signin" id="login" role="form">
+				    <center><h2 class="form-signin-heading" style="font-family:lato">COOK BOOK</h2></center>
+				    <center><h5 class="form-signin-heading">Add Recipe</h5></center>
+				    <a href="#" id="flipToRecover" class="flipLink">
+				      <div id="triangle-topright"></div>
+				    </a>
+				    <input type="text" class="form-control" id="name" placeholder="Name" required autofocus>
+				    <input type="text" class="form-control" id="classification" placeholder="Classification" required>
+	  				<textarea class="form-control" rows="5" id="instruction" placeholder="Recipe" required></textarea>
+				    <button class="btn btn-lg btn-primary btn-block" id="ok">ENTER</button>
+				  </form>
+				</div> <!-- /container -->
+			</div>
+		</div>
+		
+		
+		<script>
+			var dataRef = new Firebase('https://tfxs9tih6is.firebaseio-demo.com/recipes');	//instantiate Firebase reference
+			$('#ok').click(function(){			
+				var name = $('#name').val();	//get value from name textfield
+				var classification = $('#classification').val();	//get value from classification textfield
+				var instruction = $('#instruction').val();	//get value from instruction textfield
+				dataRef.push({name : name, classification : classification, instruction : instruction});	//push data to Firebase database
+				alert("Added Recipe successfully!");
+			});
+		</script>
+		
+	</body>
+</html>
